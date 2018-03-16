@@ -17,7 +17,7 @@ for F in FileDiffs:
     commitsOnFile = list(repo.iter_commits(paths=File))
     print("Changes for %s:" % File)
 
-    latestCommit = commitsOnFile[-1]
+    latestCommit = commitsOnFile[0]
     print(repo.git.diff(None, latestCommit, File))
 
     MSG = input("Commit message for %s:\n" % File)
