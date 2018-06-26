@@ -18,7 +18,16 @@ for F in FileDiffs:
     print("Changes for %s:" % File)
 
     latestCommit = commitsOnFile[0]
-    print(repo.git.diff(None, latestCommit, File))
+
+    try:
+        textualDifference = repo.git.diff(None, latestCommit, File)
+    except Exception as e:
+        print("Skipping non-modifying commit.")
+        print(e)
+        raise
+        continue
+
+    print(textualDifference)
 
     MSG = input("Commit message for %s:\n" % File)
 
