@@ -22,9 +22,7 @@ for F in FileDiffs:
     try:
         textualDifference = repo.git.diff(None, latestCommit, File)
     except Exception as e:
-        print("Skipping non-modifying commit.")
-        print(e)
-        raise
+        print("Skipping non-modifying commit at %s." % File)
         continue
 
     print(textualDifference)
